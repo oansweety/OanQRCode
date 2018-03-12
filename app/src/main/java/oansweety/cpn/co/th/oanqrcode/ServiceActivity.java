@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
+import oansweety.cpn.co.th.oanqrcode.fragment.ShowAllFragment;
+
 public class ServiceActivity extends AppCompatActivity {
 
     //    Explicit
@@ -28,6 +30,13 @@ public class ServiceActivity extends AppCompatActivity {
 
 //        Create Toolbar
         createToolbar();
+
+//        Add Fragment to Activity
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.contentServiceFragment, new ShowAllFragment())
+                    .commit();
+        }
 
     }   // Main Method
 
