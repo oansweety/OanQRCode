@@ -60,8 +60,8 @@ public class ShowAllFragment extends Fragment {
                 nameFoodStrings[i] = jsonObject.getString("NameFood");
                 imagePathStrings[i] = jsonObject.getString("ImagePath");
                 categoryStrings[i] = jsonObject.getString("Category");
-                categoryStrings[i] = jsonObject.getString("Price");
-                categoryStrings[i] = jsonObject.getString("Detail");
+                priceStrings[i] = jsonObject.getString("Price");
+                detailStrings[i] = jsonObject.getString("Detail");
 
             }   // for
 
