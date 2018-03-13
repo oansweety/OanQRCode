@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import oansweety.cpn.co.th.oanqrcode.fragment.DisplayQRfragment;
 import oansweety.cpn.co.th.oanqrcode.fragment.QRScanFragment;
 import oansweety.cpn.co.th.oanqrcode.fragment.ShowAllFragment;
 
@@ -22,6 +23,7 @@ public class ServiceActivity extends AppCompatActivity {
     private String[] loginStrings;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
+    private boolean aBoolean = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +92,17 @@ public class ServiceActivity extends AppCompatActivity {
 
     private void addFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentServiceFragment, new ShowAllFragment())
-                    .commit();
+
+            if (aBoolean) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.contentServiceFragment, new ShowAllFragment())
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.contentServiceFragment,
+                                DisplayQRfragment.displayQRInstance(getIntent().getStringExtra("QRcode"), loginStrings))
+                        .commit();
+            }
         }
     }
 
@@ -143,6 +153,7 @@ public class ServiceActivity extends AppCompatActivity {
 
     private void getValueFromIntent() {
         loginStrings = getIntent().getStringArrayExtra("Login");
+        aBoolean = getIntent().getBooleanExtra("Status", true);
         Log.d(tag, "NameLogin ==> " + loginStrings[1]);
     }
 

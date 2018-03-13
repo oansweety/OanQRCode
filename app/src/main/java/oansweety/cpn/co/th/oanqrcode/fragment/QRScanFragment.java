@@ -69,12 +69,9 @@ public class QRScanFragment extends Fragment{
 
                         Intent intent = getActivity().getIntent();
                         intent.putExtra("Login", loginStrings);
+                        intent.putExtra("Status", false);
+                        intent.putExtra("QRcode", resultString);
                         startActivity(intent);
-
-//                        getActivity().getSupportFragmentManager()
-//                                .beginTransaction()
-//                                .replace(R.id.contentServiceFragment, new DisplayQRfragment())
-//                                .commit();
 
                     }
                 });
