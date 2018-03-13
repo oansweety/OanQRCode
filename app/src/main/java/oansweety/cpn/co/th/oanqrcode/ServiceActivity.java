@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import oansweety.cpn.co.th.oanqrcode.fragment.QRScanFragment;
 import oansweety.cpn.co.th.oanqrcode.fragment.ShowAllFragment;
 
 public class ServiceActivity extends AppCompatActivity {
@@ -32,13 +35,66 @@ public class ServiceActivity extends AppCompatActivity {
         createToolbar();
 
 //        Add Fragment to Activity
+        addFragment(savedInstanceState);
+
+//        Show ReadAll
+        showReadAll();
+
+//        QR Scan
+        qrController();
+
+//        Exit Controller
+        exitController();
+
+    }   // Main Method
+
+    private void exitController() {
+        TextView textView = findViewById(R.id.txtExit);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+    }
+
+    private void qrController() {
+        TextView textView = findViewById(R.id.txtQRScan);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentServiceFragment, QRScanFragment.qRscanInstance(loginStrings))
+                        .commit();
+                drawerLayout.closeDrawers();
+
+            }
+        });
+    }
+
+    private void showReadAll() {
+        TextView textView = findViewById(R.id.txtShowAll);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.contentServiceFragment, new ShowAllFragment())
+                        .commit();
+                drawerLayout.closeDrawers();
+
+            }
+        });
+    }
+
+    private void addFragment(Bundle savedInstanceState) {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.contentServiceFragment, new ShowAllFragment())
                     .commit();
         }
-
-    }   // Main Method
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

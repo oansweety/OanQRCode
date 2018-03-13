@@ -3,6 +3,7 @@
     package="oansweety.cpn.co.th.oanqrcode">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
